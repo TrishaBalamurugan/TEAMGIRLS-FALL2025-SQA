@@ -38,7 +38,7 @@ This project integrates **Software Quality Assurance (SQA)** activities into the
 1. Clone the repository:  
    ```bash
    git clone https://github.com/TrishaBalamurugan/TEAMGIRLS-FALL2025-SQA.git
-   cd TEAMNAME-FALL2025-SQA
+   cd TEAMGIRLS-FALL2025-SQA
 2. Run fuzz testing:
       python fuzz.py
 3. Check forensics/forensics.log for logging outputs.
