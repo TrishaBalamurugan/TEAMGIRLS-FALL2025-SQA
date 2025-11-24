@@ -1,0 +1,345 @@
+2025-11-24 16:47:31,071 - INFO - Parsing Python file: FAME_ML/py_parser.py
+2025-11-24 16:51:27,268 - INFO - Parsing Python file: FAME_ML/py_parser.py
+2025-11-24 16:52:56,377 - INFO - Parsing Python file: FAME_ML/py_parser.py
+2025-11-24 16:52:56,397 - INFO - Checking logging existence for data: some_var
+2025-11-24 16:55:10,016 - INFO - Parsing Python file: FAME_ML/py_parser.py
+2025-11-24 16:55:10,021 - INFO - Checking logging existence for data: some_var
+2025-11-24 16:55:10,023 - INFO - Detecting attribute function calls
+2025-11-24 16:55:10,025 - INFO - Total attribute functions found: 30
+2025-11-24 17:12:47,407 - INFO - Parsing Python file: FAME_ML/py_parser.py
+2025-11-24 17:12:47,412 - INFO - Checking logging existence for data: some_var
+2025-11-24 17:12:47,415 - INFO - Detecting attribute function calls
+2025-11-24 17:12:47,417 - INFO - Total attribute functions found: 29
+2025-11-24 17:12:47,417 - INFO - Logging check result: False
+2025-11-24 17:12:47,417 - INFO - Extracting function assignments from AST
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 19
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 20
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 33
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 42
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 35
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 37
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 26
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 27
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 40
+2025-11-24 17:12:47,418 - INFO - Found assignment at line 30
+2025-11-24 17:12:47,419 - INFO - Found assignment at line 50
+2025-11-24 17:15:40,657 - INFO - Parsing Python file: FAME_ML/py_parser.py
+2025-11-24 17:15:40,662 - INFO - Checking logging existence for data: some_var
+2025-11-24 17:15:40,664 - INFO - Detecting attribute function calls
+2025-11-24 17:15:40,666 - INFO - Total attribute functions found: 44
+2025-11-24 17:15:40,666 - INFO - Logging check result: False
+2025-11-24 17:15:40,666 - INFO - Extracting function assignments from AST
+2025-11-24 17:15:40,666 - INFO - Found assignment at line 19
+2025-11-24 17:15:40,666 - INFO - Found assignment at line 20
+2025-11-24 17:15:40,666 - INFO - Found assignment at line 33
+2025-11-24 17:15:40,666 - INFO - Found assignment at line 48
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 36
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 43
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 26
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 27
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 38
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 39
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 46
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 30
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 56
+2025-11-24 17:15:40,667 - INFO - Found assignment at line 59
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 65
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 70
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 71
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 72
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 74
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 75
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 79
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 87
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 78
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 89
+2025-11-24 17:15:40,668 - INFO - Found assignment at line 91
+2025-11-24 17:15:40,669 - INFO - Found assignment at line 98
+2025-11-24 17:15:40,669 - INFO - Found assignment at line 103
+2025-11-24 17:15:40,669 - INFO - Found assignment at line 104
+2025-11-24 17:15:40,669 - INFO - Found assignment at line 112
+2025-11-24 17:15:40,669 - INFO - Found assignment at line 107
+2025-11-24 17:15:40,669 - INFO - Found assignment at line 109
+2025-11-24 17:15:40,669 - INFO - Found assignment at line 111
+2025-11-24 17:15:40,669 - INFO - Found assignment at line 120
+2025-11-24 17:15:40,669 - INFO - Found assignment at line 124
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 126
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 127
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 128
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 135
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 141
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 142
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 143
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 148
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 149
+2025-11-24 17:15:40,670 - INFO - Found assignment at line 146
+2025-11-24 17:15:40,670 - INFO - Total function assignments extracted: 6
+2025-11-24 17:15:40,671 - INFO - Analyzing function definitions
+2025-11-24 17:17:34,642 - INFO - Parsing Python file: FAME_ML/py_parser.py
+2025-11-24 17:17:34,649 - INFO - Checking logging existence for data: some_var
+2025-11-24 17:17:34,652 - INFO - Detecting attribute function calls
+2025-11-24 17:17:34,654 - INFO - Total attribute functions found: 51
+2025-11-24 17:17:34,654 - INFO - Logging check result: False
+2025-11-24 17:17:34,654 - INFO - Extracting function assignments from AST
+2025-11-24 17:17:34,654 - INFO - Found assignment at line 19
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 20
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 33
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 48
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 37
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 39
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 40
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 43
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 26
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 27
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 46
+2025-11-24 17:17:34,655 - INFO - Found assignment at line 30
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 56
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 59
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 65
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 70
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 71
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 72
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 75
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 76
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 82
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 97
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 80
+2025-11-24 17:17:34,656 - INFO - Found assignment at line 99
+2025-11-24 17:17:34,657 - INFO - Found assignment at line 101
+2025-11-24 17:17:34,657 - INFO - Found assignment at line 90
+2025-11-24 17:17:34,657 - INFO - Found assignment at line 109
+2025-11-24 17:17:34,657 - INFO - Found assignment at line 114
+2025-11-24 17:17:34,657 - INFO - Found assignment at line 115
+2025-11-24 17:17:34,657 - INFO - Found assignment at line 125
+2025-11-24 17:17:34,657 - INFO - Found assignment at line 119
+2025-11-24 17:17:34,657 - INFO - Found assignment at line 121
+2025-11-24 17:17:34,657 - INFO - Found assignment at line 123
+2025-11-24 17:17:34,658 - INFO - Found assignment at line 132
+2025-11-24 17:17:34,658 - INFO - Found assignment at line 144
+2025-11-24 17:17:34,658 - INFO - Found assignment at line 148
+2025-11-24 17:17:34,658 - INFO - Found assignment at line 150
+2025-11-24 17:17:34,658 - INFO - Found assignment at line 151
+2025-11-24 17:17:34,658 - INFO - Found assignment at line 152
+2025-11-24 17:17:34,658 - INFO - Found assignment at line 159
+2025-11-24 17:17:34,658 - INFO - Found assignment at line 170
+2025-11-24 17:17:34,659 - INFO - Found assignment at line 176
+2025-11-24 17:17:34,659 - INFO - Found assignment at line 177
+2025-11-24 17:17:34,659 - INFO - Found assignment at line 178
+2025-11-24 17:17:34,659 - INFO - Found assignment at line 184
+2025-11-24 17:17:34,659 - INFO - Found assignment at line 185
+2025-11-24 17:17:34,659 - INFO - Found assignment at line 181
+2025-11-24 17:17:34,659 - INFO - Total function assignments extracted: 8
+2025-11-24 17:17:34,659 - INFO - Analyzing function definitions
+2025-11-24 17:17:34,662 - INFO - Total function calls found: 100
+2025-11-24 17:17:34,662 - INFO - Detecting model features from AST
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 19
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 20
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 33
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 48
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 37
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 39
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 40
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 43
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 26
+2025-11-24 17:17:34,662 - INFO - Processing assignment at line 27
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 46
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 30
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 56
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 59
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 65
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 70
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 71
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 72
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 75
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 76
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 82
+2025-11-24 17:17:34,663 - INFO - Processing assignment at line 97
+2025-11-24 17:17:34,664 - INFO - Processing assignment at line 80
+2025-11-24 17:17:34,664 - INFO - Processing assignment at line 99
+2025-11-24 17:17:34,664 - INFO - Processing assignment at line 101
+2025-11-24 17:17:34,664 - INFO - Processing assignment at line 90
+2025-11-24 17:17:34,664 - INFO - Processing assignment at line 109
+2025-11-24 17:17:34,664 - INFO - Processing assignment at line 114
+2025-11-24 17:17:34,664 - INFO - Processing assignment at line 115
+2025-11-24 17:17:34,664 - INFO - Processing assignment at line 125
+2025-11-24 17:17:34,664 - INFO - Processing assignment at line 119
+2025-11-24 17:17:34,665 - INFO - Processing assignment at line 121
+2025-11-24 17:17:34,665 - INFO - Processing assignment at line 123
+2025-11-24 17:17:34,665 - INFO - Processing assignment at line 132
+2025-11-24 17:17:34,665 - INFO - Processing assignment at line 144
+2025-11-24 17:17:34,665 - INFO - Processing assignment at line 148
+2025-11-24 17:17:34,665 - INFO - Processing assignment at line 150
+2025-11-24 17:17:34,665 - INFO - Processing assignment at line 151
+2025-11-24 17:17:34,665 - INFO - Processing assignment at line 152
+2025-11-24 17:17:34,666 - INFO - Processing assignment at line 159
+2025-11-24 17:17:34,666 - INFO - Processing assignment at line 170
+2025-11-24 17:17:34,666 - INFO - Processing assignment at line 176
+2025-11-24 17:17:34,666 - INFO - Processing assignment at line 177
+2025-11-24 17:17:34,666 - INFO - Processing assignment at line 178
+2025-11-24 17:17:34,666 - INFO - Processing assignment at line 184
+2025-11-24 17:17:34,666 - INFO - Processing assignment at line 185
+2025-11-24 17:17:34,666 - INFO - Processing assignment at line 181
+2025-11-24 17:17:34,667 - INFO - Total features extracted: 14
+2025-11-24 17:20:24,014 - INFO - Parsing Python file: FAME_ML/py_parser.py
+2025-11-24 17:20:24,022 - INFO - Checking logging existence for data: some_var
+2025-11-24 17:20:24,026 - INFO - Detecting attribute function calls
+2025-11-24 17:20:24,030 - INFO - Total attribute functions found: 51
+2025-11-24 17:20:24,030 - INFO - Logging check result: False
+2025-11-24 17:20:24,036 - INFO - Extracting function assignments from AST
+2025-11-24 17:20:24,037 - INFO - Found assignment at line 19
+2025-11-24 17:20:24,037 - INFO - Found assignment at line 20
+2025-11-24 17:20:24,037 - INFO - Found assignment at line 33
+2025-11-24 17:20:24,037 - INFO - Found assignment at line 48
+2025-11-24 17:20:24,037 - INFO - Found assignment at line 37
+2025-11-24 17:20:24,037 - INFO - Found assignment at line 39
+2025-11-24 17:20:24,038 - INFO - Found assignment at line 40
+2025-11-24 17:20:24,038 - INFO - Found assignment at line 43
+2025-11-24 17:20:24,038 - INFO - Found assignment at line 26
+2025-11-24 17:20:24,038 - INFO - Found assignment at line 27
+2025-11-24 17:20:24,039 - INFO - Found assignment at line 46
+2025-11-24 17:20:24,039 - INFO - Found assignment at line 30
+2025-11-24 17:20:24,039 - INFO - Found assignment at line 56
+2025-11-24 17:20:24,039 - INFO - Found assignment at line 59
+2025-11-24 17:20:24,039 - INFO - Found assignment at line 65
+2025-11-24 17:20:24,039 - INFO - Found assignment at line 70
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 71
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 72
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 75
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 76
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 82
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 97
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 80
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 99
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 101
+2025-11-24 17:20:24,040 - INFO - Found assignment at line 90
+2025-11-24 17:20:24,041 - INFO - Found assignment at line 109
+2025-11-24 17:20:24,041 - INFO - Found assignment at line 114
+2025-11-24 17:20:24,041 - INFO - Found assignment at line 115
+2025-11-24 17:20:24,041 - INFO - Found assignment at line 125
+2025-11-24 17:20:24,041 - INFO - Found assignment at line 119
+2025-11-24 17:20:24,041 - INFO - Found assignment at line 121
+2025-11-24 17:20:24,041 - INFO - Found assignment at line 123
+2025-11-24 17:20:24,041 - INFO - Found assignment at line 132
+2025-11-24 17:20:24,042 - INFO - Found assignment at line 144
+2025-11-24 17:20:24,042 - INFO - Found assignment at line 148
+2025-11-24 17:20:24,042 - INFO - Found assignment at line 150
+2025-11-24 17:20:24,042 - INFO - Found assignment at line 151
+2025-11-24 17:20:24,042 - INFO - Found assignment at line 152
+2025-11-24 17:20:24,042 - INFO - Found assignment at line 159
+2025-11-24 17:20:24,042 - INFO - Found assignment at line 170
+2025-11-24 17:20:24,042 - INFO - Found assignment at line 176
+2025-11-24 17:20:24,043 - INFO - Found assignment at line 177
+2025-11-24 17:20:24,043 - INFO - Found assignment at line 178
+2025-11-24 17:20:24,043 - INFO - Found assignment at line 184
+2025-11-24 17:20:24,043 - INFO - Found assignment at line 185
+2025-11-24 17:20:24,043 - INFO - Found assignment at line 181
+2025-11-24 17:20:24,043 - INFO - Total function assignments extracted: 8
+2025-11-24 17:20:24,043 - INFO - Analyzing function definitions
+2025-11-24 17:20:24,047 - INFO - Total function calls found: 100
+2025-11-24 17:22:35,125 - INFO - Parsing Python file: FAME_ML/py_parser.py
+2025-11-24 17:22:35,132 - INFO - Checking logging existence for data: some_var
+2025-11-24 17:22:35,134 - INFO - Detecting attribute function calls
+2025-11-24 17:22:35,136 - INFO - Total attribute functions found: 51
+2025-11-24 17:22:35,137 - INFO - Logging check result: False
+2025-11-24 17:22:35,137 - INFO - Extracting function assignments from AST
+2025-11-24 17:22:35,137 - INFO - Found assignment at line 19
+2025-11-24 17:22:35,137 - INFO - Found assignment at line 20
+2025-11-24 17:22:35,138 - INFO - Found assignment at line 33
+2025-11-24 17:22:35,138 - INFO - Found assignment at line 48
+2025-11-24 17:22:35,145 - INFO - Found assignment at line 37
+2025-11-24 17:22:35,145 - INFO - Found assignment at line 39
+2025-11-24 17:22:35,145 - INFO - Found assignment at line 40
+2025-11-24 17:22:35,145 - INFO - Found assignment at line 43
+2025-11-24 17:22:35,145 - INFO - Found assignment at line 26
+2025-11-24 17:22:35,145 - INFO - Found assignment at line 27
+2025-11-24 17:22:35,145 - INFO - Found assignment at line 46
+2025-11-24 17:22:35,146 - INFO - Found assignment at line 30
+2025-11-24 17:22:35,146 - INFO - Found assignment at line 56
+2025-11-24 17:22:35,146 - INFO - Found assignment at line 59
+2025-11-24 17:22:35,146 - INFO - Found assignment at line 65
+2025-11-24 17:22:35,146 - INFO - Found assignment at line 70
+2025-11-24 17:22:35,146 - INFO - Found assignment at line 71
+2025-11-24 17:22:35,146 - INFO - Found assignment at line 72
+2025-11-24 17:22:35,146 - INFO - Found assignment at line 75
+2025-11-24 17:22:35,146 - INFO - Found assignment at line 76
+2025-11-24 17:22:35,147 - INFO - Found assignment at line 82
+2025-11-24 17:22:35,147 - INFO - Found assignment at line 97
+2025-11-24 17:22:35,147 - INFO - Found assignment at line 80
+2025-11-24 17:22:35,147 - INFO - Found assignment at line 99
+2025-11-24 17:22:35,147 - INFO - Found assignment at line 101
+2025-11-24 17:22:35,147 - INFO - Found assignment at line 90
+2025-11-24 17:22:35,147 - INFO - Found assignment at line 109
+2025-11-24 17:22:35,148 - INFO - Found assignment at line 114
+2025-11-24 17:22:35,148 - INFO - Found assignment at line 115
+2025-11-24 17:22:35,148 - INFO - Found assignment at line 125
+2025-11-24 17:22:35,148 - INFO - Found assignment at line 119
+2025-11-24 17:22:35,148 - INFO - Found assignment at line 121
+2025-11-24 17:22:35,148 - INFO - Found assignment at line 123
+2025-11-24 17:22:35,149 - INFO - Found assignment at line 132
+2025-11-24 17:22:35,149 - INFO - Found assignment at line 144
+2025-11-24 17:22:35,149 - INFO - Found assignment at line 148
+2025-11-24 17:22:35,149 - INFO - Found assignment at line 150
+2025-11-24 17:22:35,149 - INFO - Found assignment at line 151
+2025-11-24 17:22:35,149 - INFO - Found assignment at line 152
+2025-11-24 17:22:35,150 - INFO - Found assignment at line 159
+2025-11-24 17:22:35,150 - INFO - Found assignment at line 170
+2025-11-24 17:22:35,150 - INFO - Found assignment at line 176
+2025-11-24 17:22:35,150 - INFO - Found assignment at line 177
+2025-11-24 17:22:35,150 - INFO - Found assignment at line 178
+2025-11-24 17:22:35,150 - INFO - Found assignment at line 184
+2025-11-24 17:22:35,150 - INFO - Found assignment at line 185
+2025-11-24 17:22:35,150 - INFO - Found assignment at line 181
+2025-11-24 17:22:35,151 - INFO - Total function assignments extracted: 8
+2025-11-24 17:22:35,157 - INFO - Analyzing function definitions
+2025-11-24 17:22:35,162 - INFO - Total function calls found: 100
+2025-11-24 17:22:35,175 - INFO - Detecting attribute function calls
+2025-11-24 17:22:35,179 - INFO - Total attribute functions found: 51
+2025-11-24 17:22:35,180 - INFO - Detecting model features from AST
+2025-11-24 17:22:35,180 - INFO - Processing assignment at line 19
+2025-11-24 17:22:35,183 - INFO - Processing assignment at line 20
+2025-11-24 17:22:35,183 - INFO - Processing assignment at line 33
+2025-11-24 17:22:35,183 - INFO - Processing assignment at line 48
+2025-11-24 17:22:35,183 - INFO - Processing assignment at line 37
+2025-11-24 17:22:35,183 - INFO - Processing assignment at line 39
+2025-11-24 17:22:35,183 - INFO - Processing assignment at line 40
+2025-11-24 17:22:35,183 - INFO - Processing assignment at line 43
+2025-11-24 17:22:35,183 - INFO - Processing assignment at line 26
+2025-11-24 17:22:35,184 - INFO - Processing assignment at line 27
+2025-11-24 17:22:35,184 - INFO - Processing assignment at line 46
+2025-11-24 17:22:35,184 - INFO - Processing assignment at line 30
+2025-11-24 17:22:35,184 - INFO - Processing assignment at line 56
+2025-11-24 17:22:35,184 - INFO - Processing assignment at line 59
+2025-11-24 17:22:35,184 - INFO - Processing assignment at line 65
+2025-11-24 17:22:35,184 - INFO - Processing assignment at line 70
+2025-11-24 17:22:35,198 - INFO - Processing assignment at line 71
+2025-11-24 17:22:35,198 - INFO - Processing assignment at line 72
+2025-11-24 17:22:35,198 - INFO - Processing assignment at line 75
+2025-11-24 17:22:35,198 - INFO - Processing assignment at line 76
+2025-11-24 17:22:35,198 - INFO - Processing assignment at line 82
+2025-11-24 17:22:35,198 - INFO - Processing assignment at line 97
+2025-11-24 17:22:35,198 - INFO - Processing assignment at line 80
+2025-11-24 17:22:35,198 - INFO - Processing assignment at line 99
+2025-11-24 17:22:35,199 - INFO - Processing assignment at line 101
+2025-11-24 17:22:35,199 - INFO - Processing assignment at line 90
+2025-11-24 17:22:35,199 - INFO - Processing assignment at line 109
+2025-11-24 17:22:35,199 - INFO - Processing assignment at line 114
+2025-11-24 17:22:35,199 - INFO - Processing assignment at line 115
+2025-11-24 17:22:35,199 - INFO - Processing assignment at line 125
+2025-11-24 17:22:35,199 - INFO - Processing assignment at line 119
+2025-11-24 17:22:35,200 - INFO - Processing assignment at line 121
+2025-11-24 17:22:35,200 - INFO - Processing assignment at line 123
+2025-11-24 17:22:35,200 - INFO - Processing assignment at line 132
+2025-11-24 17:22:35,200 - INFO - Processing assignment at line 144
+2025-11-24 17:22:35,200 - INFO - Processing assignment at line 148
+2025-11-24 17:22:35,200 - INFO - Processing assignment at line 150
+2025-11-24 17:22:35,200 - INFO - Processing assignment at line 151
+2025-11-24 17:22:35,200 - INFO - Processing assignment at line 152
+2025-11-24 17:22:35,201 - INFO - Processing assignment at line 159
+2025-11-24 17:22:35,201 - INFO - Processing assignment at line 170
+2025-11-24 17:22:35,201 - INFO - Processing assignment at line 176
+2025-11-24 17:22:35,201 - INFO - Processing assignment at line 177
+2025-11-24 17:22:35,201 - INFO - Processing assignment at line 178
+2025-11-24 17:22:35,201 - INFO - Processing assignment at line 184
+2025-11-24 17:22:35,201 - INFO - Processing assignment at line 185
+2025-11-24 17:22:35,201 - INFO - Processing assignment at line 181
+2025-11-24 17:22:35,202 - INFO - Total features extracted: 14
