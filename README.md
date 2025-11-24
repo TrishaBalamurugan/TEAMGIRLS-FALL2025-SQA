@@ -1,4 +1,5 @@
 # TEAMGIRLS-FALL2025-SQA
+
 Software Quality Assurance (SQA) project for COMP 5710/6710: integrates fuzz testing, forensics logging, and GitHub Actions CI into the MLForensics Python project.
 
 ## Team Information
@@ -19,27 +20,32 @@ This project integrates **Software Quality Assurance (SQA)** activities into the
 
 
 ## SQA Activities
-1. **Fuzz Testing**  
-   - Automated fuzzing of 5 selected Python methods.  
-   - Reports any bugs found during execution.  
 
-2. **Forensics Logging**  
-   - Integrated logging in 5 Python methods.  
-   - Captures method entry/exit, exceptions, and key variables.  
+### 1. Fuzz Testing
+- Automated fuzzing of 5 selected Python methods.  
+- Reports any bugs found during execution (`fuzz_log.txt`).  
 
-3. **Continuous Integration (CI)**  
-   - GitHub Actions workflow triggers on `push` or `pull_request`.  
-   - Automatically executes tests, fuzzing, and forensics scripts.  
+### 2. Forensics Logging
+- Integrated logging in 5 Python methods.  
+- Captures method entry/exit, exceptions, and key variables (`forensics/forensics.log`).  
+
+### 3. Continuous Integration (CI)
+- GitHub Actions workflow triggers on `push` or `pull_request`.  
+- Automatically executes tests, fuzzing, and forensics scripts.  
 
 ## Lessons Learned
-- Documented in `SQA-REPO.md`.
+- Detailed lessons and observations are documented in `SQA-REPO.md`.  
+- Logging greatly improves traceability and debugging.  
+- Fuzzing identifies edge cases and unexpected crashes.  
+- CI ensures code quality is continuously monitored.
 
 ## How to Run
-1. Clone the repository:  
+1. Clone the repository:
    ```bash
    git clone https://github.com/TrishaBalamurugan/TEAMGIRLS-FALL2025-SQA.git
    cd TEAMGIRLS-FALL2025-SQA
 2. Run fuzz testing:
-      python fuzz.py
-3. Check forensics/forensics.log for logging outputs.
+   python3 fuzz.py
+3. Check forensics logging output:
+   cat forensics/forensics.log
 4. CI workflow runs automatically on GitHub for any push or pull request.
