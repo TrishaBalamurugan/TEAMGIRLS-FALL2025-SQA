@@ -16,7 +16,6 @@ This project integrates **Software Quality Assurance (SQA)** activities into the
 │ └─ ci.yml
 ├─ README.md
 ├─ SQA-REPO.md # Report describing activities and lessons learned
-└─ MLForensics.zip # Original project files
 
 
 ## SQA Activities
