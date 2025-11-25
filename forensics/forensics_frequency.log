@@ -1,0 +1,78 @@
+2025-11-24 18:59:34,730 - INFO - Timestamp generated: 2025-11-24 18:59:34
+2025-11-24 18:59:34,730 - INFO - giveTimeStamp returned: 2025-11-24 18:59:34
+2025-11-24 19:05:24,032 - INFO - Timestamp generated: 2025-11-24 19:05:24
+2025-11-24 19:05:24,033 - INFO - giveTimeStamp returned: 2025-11-24 19:05:24
+2025-11-24 19:05:24,038 - INFO - Calculating total SLOC from dataframe
+2025-11-24 19:05:24,051 - INFO - Total SLOC calculated: 6
+2025-11-24 19:05:24,051 - INFO - getAllSLOC returned: 6
+2025-11-24 19:05:24,084 - INFO - Generating proportion report from dummy_results.csv
+2025-11-24 19:05:24,112 - INFO - Processing repo: repo1
+2025-11-24 19:05:24,117 - INFO - repo1 | Field: DATA_LOAD_COUNT | Total Files: 2 | At least one: 1 | Proportion: 50.0
+2025-11-24 19:05:24,118 - INFO - repo1 | Field: MODEL_LOAD_COUNT | Total Files: 2 | At least one: 0 | Proportion: 0.0
+2025-11-24 19:05:24,123 - INFO - repo1 | Field: DATA_DOWNLOAD_COUNT | Total Files: 2 | At least one: 1 | Proportion: 50.0
+2025-11-24 19:05:24,124 - INFO - repo1 | Field: MODEL_LABEL_COUNT | Total Files: 2 | At least one: 1 | Proportion: 50.0
+2025-11-24 19:05:24,125 - INFO - repo1 | Field: MODEL_OUTPUT_COUNT | Total Files: 2 | At least one: 1 | Proportion: 50.0
+2025-11-24 19:05:24,125 - INFO - repo1 | Field: DATA_PIPELINE_COUNT | Total Files: 2 | At least one: 0 | Proportion: 0.0
+2025-11-24 19:05:24,126 - INFO - repo1 | Field: ENVIRONMENT_COUNT | Total Files: 2 | At least one: 0 | Proportion: 0.0
+2025-11-24 19:05:24,127 - INFO - repo1 | Field: STATE_OBSERVE_COUNT | Total Files: 2 | At least one: 1 | Proportion: 50.0
+2025-11-24 19:05:24,129 - INFO - repo1 | Field: TOTAL_EVENT_COUNT | Total Files: 2 | At least one: 2 | Proportion: 100.0
+2025-11-24 19:05:24,130 - INFO - Processing repo: repo2
+2025-11-24 19:05:24,132 - INFO - repo2 | Field: DATA_LOAD_COUNT | Total Files: 1 | At least one: 1 | Proportion: 100.0
+2025-11-24 19:05:24,132 - INFO - repo2 | Field: MODEL_LOAD_COUNT | Total Files: 1 | At least one: 1 | Proportion: 100.0
+2025-11-24 19:05:24,141 - INFO - repo2 | Field: DATA_DOWNLOAD_COUNT | Total Files: 1 | At least one: 0 | Proportion: 0.0
+2025-11-24 19:05:24,142 - INFO - repo2 | Field: MODEL_LABEL_COUNT | Total Files: 1 | At least one: 0 | Proportion: 0.0
+2025-11-24 19:05:24,143 - INFO - repo2 | Field: MODEL_OUTPUT_COUNT | Total Files: 1 | At least one: 0 | Proportion: 0.0
+2025-11-24 19:05:24,144 - INFO - repo2 | Field: DATA_PIPELINE_COUNT | Total Files: 1 | At least one: 0 | Proportion: 0.0
+2025-11-24 19:05:24,145 - INFO - repo2 | Field: ENVIRONMENT_COUNT | Total Files: 1 | At least one: 0 | Proportion: 0.0
+2025-11-24 19:05:24,147 - INFO - repo2 | Field: STATE_OBSERVE_COUNT | Total Files: 1 | At least one: 0 | Proportion: 0.0
+2025-11-24 19:05:24,148 - INFO - repo2 | Field: TOTAL_EVENT_COUNT | Total Files: 1 | At least one: 1 | Proportion: 100.0
+2025-11-24 19:05:24,155 - INFO - Proportion report saved to dummy_proportion.csv
+2025-11-24 19:05:24,155 - INFO - reportProportion ran and output saved to dummy_proportion.csv
+2025-11-24 19:05:24,155 - INFO - Generating event density report from dummy_results.csv
+2025-11-24 19:05:24,158 - INFO - Processing repo: repo1
+2025-11-24 19:05:24,159 - INFO - Calculating total SLOC from dataframe
+2025-11-24 19:05:24,159 - ERROR - Error reading file file1.py: [Errno 2] No such file or directory: np.str_('file1.py')
+2025-11-24 19:05:24,159 - ERROR - Error reading file file2.py: [Errno 2] No such file or directory: np.str_('file2.py')
+2025-11-24 19:05:24,159 - INFO - Total SLOC calculated: 0
+2025-11-24 19:05:24,160 - WARNING - All Python file size is zero for repo repo1
+2025-11-24 19:05:24,160 - INFO - repo1 | Field: DATA_LOAD_COUNT | Total LOC: 0 | Total Events: 1 | Event Density: 0
+2025-11-24 19:05:24,160 - WARNING - All Python file size is zero for repo repo1
+2025-11-24 19:05:24,160 - INFO - repo1 | Field: MODEL_LOAD_COUNT | Total LOC: 0 | Total Events: 0 | Event Density: 0
+2025-11-24 19:05:24,160 - WARNING - All Python file size is zero for repo repo1
+2025-11-24 19:05:24,160 - INFO - repo1 | Field: DATA_DOWNLOAD_COUNT | Total LOC: 0 | Total Events: 1 | Event Density: 0
+2025-11-24 19:05:24,160 - WARNING - All Python file size is zero for repo repo1
+2025-11-24 19:05:24,160 - INFO - repo1 | Field: MODEL_LABEL_COUNT | Total LOC: 0 | Total Events: 1 | Event Density: 0
+2025-11-24 19:05:24,160 - WARNING - All Python file size is zero for repo repo1
+2025-11-24 19:05:24,160 - INFO - repo1 | Field: MODEL_OUTPUT_COUNT | Total LOC: 0 | Total Events: 1 | Event Density: 0
+2025-11-24 19:05:24,161 - WARNING - All Python file size is zero for repo repo1
+2025-11-24 19:05:24,161 - INFO - repo1 | Field: DATA_PIPELINE_COUNT | Total LOC: 0 | Total Events: 0 | Event Density: 0
+2025-11-24 19:05:24,161 - WARNING - All Python file size is zero for repo repo1
+2025-11-24 19:05:24,161 - INFO - repo1 | Field: ENVIRONMENT_COUNT | Total LOC: 0 | Total Events: 0 | Event Density: 0
+2025-11-24 19:05:24,161 - WARNING - All Python file size is zero for repo repo1
+2025-11-24 19:05:24,161 - INFO - repo1 | Field: STATE_OBSERVE_COUNT | Total LOC: 0 | Total Events: 1 | Event Density: 0
+2025-11-24 19:05:24,161 - WARNING - All Python file size is zero for repo repo1
+2025-11-24 19:05:24,162 - INFO - repo1 | Field: TOTAL_EVENT_COUNT | Total LOC: 0 | Total Events: 4 | Event Density: 0
+2025-11-24 19:05:24,162 - INFO - Processing repo: repo2
+2025-11-24 19:05:24,163 - INFO - Calculating total SLOC from dataframe
+2025-11-24 19:05:24,163 - ERROR - Error reading file file3.py: [Errno 2] No such file or directory: np.str_('file3.py')
+2025-11-24 19:05:24,163 - INFO - Total SLOC calculated: 0
+2025-11-24 19:05:24,163 - WARNING - All Python file size is zero for repo repo2
+2025-11-24 19:05:24,163 - INFO - repo2 | Field: DATA_LOAD_COUNT | Total LOC: 0 | Total Events: 2 | Event Density: 0
+2025-11-24 19:05:24,163 - WARNING - All Python file size is zero for repo repo2
+2025-11-24 19:05:24,163 - INFO - repo2 | Field: MODEL_LOAD_COUNT | Total LOC: 0 | Total Events: 1 | Event Density: 0
+2025-11-24 19:05:24,163 - WARNING - All Python file size is zero for repo repo2
+2025-11-24 19:05:24,164 - INFO - repo2 | Field: DATA_DOWNLOAD_COUNT | Total LOC: 0 | Total Events: 0 | Event Density: 0
+2025-11-24 19:05:24,164 - WARNING - All Python file size is zero for repo repo2
+2025-11-24 19:05:24,164 - INFO - repo2 | Field: MODEL_LABEL_COUNT | Total LOC: 0 | Total Events: 0 | Event Density: 0
+2025-11-24 19:05:24,164 - WARNING - All Python file size is zero for repo repo2
+2025-11-24 19:05:24,164 - INFO - repo2 | Field: MODEL_OUTPUT_COUNT | Total LOC: 0 | Total Events: 0 | Event Density: 0
+2025-11-24 19:05:24,164 - WARNING - All Python file size is zero for repo repo2
+2025-11-24 19:05:24,164 - INFO - repo2 | Field: DATA_PIPELINE_COUNT | Total LOC: 0 | Total Events: 0 | Event Density: 0
+2025-11-24 19:05:24,164 - WARNING - All Python file size is zero for repo repo2
+2025-11-24 19:05:24,164 - INFO - repo2 | Field: ENVIRONMENT_COUNT | Total LOC: 0 | Total Events: 0 | Event Density: 0
+2025-11-24 19:05:24,164 - WARNING - All Python file size is zero for repo repo2
+2025-11-24 19:05:24,164 - INFO - repo2 | Field: STATE_OBSERVE_COUNT | Total LOC: 0 | Total Events: 0 | Event Density: 0
+2025-11-24 19:05:24,165 - WARNING - All Python file size is zero for repo repo2
+2025-11-24 19:05:24,165 - INFO - repo2 | Field: TOTAL_EVENT_COUNT | Total LOC: 0 | Total Events: 3 | Event Density: 0
+2025-11-24 19:05:24,167 - INFO - Event density report saved to dummy_density.csv
+2025-11-24 19:05:24,167 - INFO - reportEventDensity ran and output saved to dummy_density.csv
