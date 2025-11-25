@@ -1,8 +1,3 @@
-'''
-Akond Rahman 
-Nov 15, 2020
-Frequency: RQ2
-'''
 import numpy as np
 import os
 import pandas as pd
