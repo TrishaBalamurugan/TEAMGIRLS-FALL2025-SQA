@@ -31,7 +31,7 @@ Project Structure
 ├─ LICENSE                       # License file
 ├─ README.md                      # Project overview, team info, and instructions
 └─ SQA-REPO.md                   # Report describing activities such as logging, fuzzing, CI results, and lessons learned
-
+```text
 
 ## SQA Activities
 
