@@ -9,7 +9,10 @@ Software Quality Assurance (SQA) project for COMP 5710/6710: integrates fuzz tes
 ## Project Overview
 This project integrates **Software Quality Assurance (SQA)** activities into the existing `MLForensics` Python project as part of COMP 5710/6710. The main objectives are to implement fuzz testing, forensics logging, and continuous integration, and to document lessons learned.
 
-## Project Structure
+# Project Structure
+
+```text
+Project Structure
 ├─ fuzz.py                      # Script to fuzz 5 Python methods and log crashes in fuzz_log.txt
 ├─ forensics/                    # Modified Python files with integrated logging
 │  ├─ empty.txt                  # Placeholder/empty file
@@ -28,6 +31,7 @@ This project integrates **Software Quality Assurance (SQA)** activities into the
 ├─ LICENSE                       # License file
 ├─ README.md                      # Project overview, team info, and instructions
 └─ SQA-REPO.md                   # Report describing activities such as logging, fuzzing, CI results, and lessons learned
+
 
 ## SQA Activities
 
