@@ -1,7 +1,7 @@
 """
-MLForensics Fuzzer (FINAL FIXED VERSION)
-- Dynamically loads modules from nested folders
-- Injects them into sys.modules so internal imports like "import py_parser" succeed
+MLForensics Fuzzer (FINAL IMPORT FIX)
+Ensures py_parser is loaded FIRST and registered as 'py_parser'
+so FAME-ML/lint_engine.py can import it.
 """
 
 import os
@@ -15,21 +15,25 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 
 
 def load_module(name, path):
-    """Load a module from a file path AND register it in sys.modules."""
+    """Load a module from a file path AND register it so internal imports work."""
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
-    sys.modules[name] = module  # <-- CRITICAL FIX
+    sys.modules[name] = module        # <-- CRITICAL
     spec.loader.exec_module(module)
     return module
 
 
 # ------------------------------------------------------
-# Load modules from your folder tree & register properly
+# LOAD py_parser FIRST (lint_engine depends on it)
+# ------------------------------------------------------
+py_parser = load_module("py_parser", os.path.join(BASE, "FAME-ML", "py_parser.py"))
+
+# ------------------------------------------------------
+# Load remaining modules
 # ------------------------------------------------------
 frequency = load_module("frequency", os.path.join(BASE, "empirical", "frequency.py"))
 report = load_module("report", os.path.join(BASE, "empirical", "report.py"))
 
-py_parser = load_module("py_parser", os.path.join(BASE, "FAME-ML", "py_parser.py"))
 lint_engine = load_module("lint_engine", os.path.join(BASE, "FAME-ML", "lint_engine.py"))
 
 mining = load_module("mining", os.path.join(BASE, "mining", "mining.py"))
@@ -48,16 +52,14 @@ def rand_str(n=20):
 def rand_path():
     """Sometimes return real files, sometimes random garbage."""
     possible = []
-
-    for sub in ["empirical", "FAME-ML", "mining"]:
-        d = os.path.join(BASE, sub)
+    for folder in ["empirical", "FAME-ML", "mining"]:
+        d = os.path.join(BASE, folder)
         for f in os.listdir(d):
             if f.endswith(".py"):
                 possible.append(os.path.join(d, f))
 
     if random.random() < 0.5:
         return random.choice(possible)
-
     return rand_str(10) + ".txt"
 
 
