@@ -1,10 +1,10 @@
 """
 Final Fuzzer for TEAMGIRLS-FALL2025-SQA
-This version loads modules ONLY from the /forensics folder
-to match the GitHub repository structure.
+This version FIXES py_parser import errors by adding forensics/ to sys.path.
 """
 
 import os
+import sys
 import random
 import traceback
 import string
@@ -13,9 +13,14 @@ import importlib.util
 BASE = os.path.dirname(os.path.abspath(__file__))
 FORENSICS = os.path.join(BASE, "forensics")
 
+# ------------------------------------------------------
+# FIX: ensure all /forensics modules can import each other
+# ------------------------------------------------------
+sys.path.append(FORENSICS)
+
 
 def load_module(name, filename):
-    """Load module from forensics/ directory."""
+    """Load a module from forensics/ directory."""
     path = os.path.join(FORENSICS, filename)
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
@@ -24,7 +29,7 @@ def load_module(name, filename):
 
 
 # ------------------------------------------------------
-# Import modules from /forensics
+# Load modules from /forensics
 # ------------------------------------------------------
 frequency = load_module("frequency", "frequency.py")
 lint_engine = load_module("lint_engine", "lint_engine.py")
@@ -82,7 +87,7 @@ def gen_git():
     return (rand_path(),)
 
 
-# Pick any callable inside git.repo.miner.py
+# Pick first callable in gitminer
 git_fn = None
 for n, v in gitminer.__dict__.items():
     if callable(v):
@@ -91,7 +96,7 @@ for n, v in gitminer.__dict__.items():
 
 
 # ------------------------------------------------------
-# Targets
+# Fuzz Targets
 # ------------------------------------------------------
 TARGETS = [
     ("frequency.getFrequencies", frequency.getFrequencies, gen_freq),
@@ -103,7 +108,7 @@ TARGETS = [
 
 
 # ------------------------------------------------------
-# Fuzzing Loop
+# Fuzz Loop
 # ------------------------------------------------------
 def fuzz(name, fn, gen):
     print(f"[+] Fuzzing {name} ...")
@@ -119,8 +124,10 @@ def fuzz(name, fn, gen):
 def main():
     reset_log()
     print("[*] Starting fuzzing...\n")
+
     for name, fn, gen in TARGETS:
         fuzz(name, fn, gen)
+
     print("\n[*] Fuzzing complete. See fuzz_errors.txt.")
 
 
