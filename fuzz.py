@@ -1,16 +1,6 @@
 """
-MLForensics Fuzzer - Clean Version (No invalid dotted modules)
-
-This version ONLY uses modules with valid Python import names.
-
-Fuzz targets:
-  1. frequency.getFrequencies(file_path)
-  2. report.generateCSV(res_dict, out_file)
-  3. lint_engine.getDataLoadCount(py_file)
-  4. py_parser.getPythonParseObject(py_file)
-  5. mining.cloneRepo(repo_url, dest_folder)
-
-All crashes will be logged to fuzz_errors.txt
+Clean Working Fuzzer for MLForensics-farzana
+This version supports subfolders without needing __init__.py
 """
 
 import os
@@ -19,114 +9,113 @@ import random
 import traceback
 import string
 
-# Ensure project root is importable
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# -----------------------------
+# Add subfolders to Python path
+# -----------------------------
+BASE = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(BASE, "empirical"))
+sys.path.append(os.path.join(BASE, "FAME-ML"))
+sys.path.append(os.path.join(BASE, "mining"))
 
-# Import ONLY valid modules
-import frequency
-import report
-import lint_engine
-import py_parser
-import mining    # this exists in your uploaded files
+# -----------------------------
+# Import modules from folders
+# -----------------------------
+import frequency              # empirical/
+import report                 # empirical/
+import lint_engine            # FAME-ML/
+import py_parser              # FAME-ML/
+import mining                 # mining/
 
+# -----------------------------
+# Helper functions
+# -----------------------------
+OUTFILE = "fuzz_errors.txt"
 
-# ----------------------------
-# Helpers
-# ----------------------------
-
-ERROR_FILE = "fuzz_errors.txt"
-
-def rand_string(n=20):
+def rand_str(n=20):
     chars = string.ascii_letters + string.digits + string.punctuation
     return "".join(random.choice(chars) for _ in range(n))
 
 def rand_path():
-    """Sometimes return a real file, sometimes garbage."""
-    files = [
-        "main.py", "frequency.py", "report.py", "py_parser.py",
-        "lint_engine.py", "mining.py"
+    possible = [
+        "empirical/" + f for f in os.listdir(os.path.join(BASE, "empirical"))
+        if f.endswith(".py")
+    ] + [
+        "FAME-ML/" + f for f in os.listdir(os.path.join(BASE, "FAME-ML"))
+        if f.endswith(".py")
+    ] + [
+        "mining/" + f for f in os.listdir(os.path.join(BASE, "mining"))
+        if f.endswith(".py")
     ]
+
     if random.random() < 0.5:
-        return random.choice(files)
-    return rand_string(8) + ".txt"
+        return random.choice(possible)
+    return rand_str(10) + ".txt"
 
 def log_error(name, args, exc):
-    with open(ERROR_FILE, "a") as f:
-        f.write("\n====================================\n")
-        f.write(f"FUNC: {name}\n")
-        f.write(f"ARGS: {args}\n")
-        f.write(f"ERROR: {type(exc).__name__}: {exc}\n")
+    with open(OUTFILE, "a") as f:
+        f.write("\n-----------------------------\n")
+        f.write(f"FUNCTION: {name}\n")
+        f.write(f"ARGS    : {args}\n")
+        f.write(f"ERROR   : {type(exc).__name__}: {exc}\n")
         f.write("TRACEBACK:\n")
         f.write("".join(traceback.format_exception(type(exc), exc, exc.__traceback__)))
-        f.write("\n")
 
 def reset_log():
-    with open(ERROR_FILE, "w") as f:
-        f.write("Fuzzing Errors\n===============\n")
+    with open(OUTFILE, "w") as f:
+        f.write("Fuzzing Errors Log\n===================\n\n")
 
-
-# ----------------------------
-# Argument Generators
-# ----------------------------
-
-def gen_args_getFrequencies():
+# -----------------------------
+# Argument generators
+# -----------------------------
+def gen_args_frequency():
     return (rand_path(),)
 
-def gen_args_generateCSV():
-    random_dict = {
-        rand_string(4): random.randint(0, 100)
-        for _ in range(random.randint(1, 5))
-    }
-    out_file = rand_string(6) + ".csv"
-    return (random_dict, out_file)
+def gen_args_report():
+    return (
+        {rand_str(4): random.randint(1, 100) for _ in range(random.randint(1,4))},
+        rand_str(8) + ".csv"
+    )
 
-def gen_args_getDataLoadCount():
+def gen_args_lint():
     return (rand_path(),)
 
-def gen_args_getPythonParseObject():
+def gen_args_parse():
     return (rand_path(),)
 
-def gen_args_cloneRepo():
-    url = "http://" + rand_string(10) + ".com/repo.git"
-    dest = rand_string(8)
-    return (url, dest)
+def gen_args_clone():
+    # fuzz unsafe repo URL patterns
+    return ("http://" + rand_str(10) + ".git", rand_str(8))
 
-
-# ----------------------------
-# Targets
-# ----------------------------
-
+# -----------------------------
+# Functions to fuzz
+# -----------------------------
 TARGETS = [
-    ("frequency.getFrequencies", frequency.getFrequencies, gen_args_getFrequencies),
-    ("report.generateCSV", report.generateCSV, gen_args_generateCSV),
-    ("lint_engine.getDataLoadCount", lint_engine.getDataLoadCount, gen_args_getDataLoadCount),
-    ("py_parser.getPythonParseObject", py_parser.getPythonParseObject, gen_args_getPythonParseObject),
-    ("mining.cloneRepo", mining.cloneRepo, gen_args_cloneRepo),
+    ("frequency.getFrequencies", frequency.getFrequencies, gen_args_frequency),
+    ("report.generateCSV", report.generateCSV, gen_args_report),
+    ("lint_engine.getDataLoadCount", lint_engine.getDataLoadCount, gen_args_lint),
+    ("py_parser.getPythonParseObject", py_parser.getPythonParseObject, gen_args_parse),
+    ("mining.cloneRepo", mining.cloneRepo, gen_args_clone),
 ]
 
-
-# ----------------------------
-# Main Fuzzer Loop
-# ----------------------------
-
-def fuzz_function(name, func, arg_gen, iterations=100):
+# -----------------------------
+# Fuzzing loop
+# -----------------------------
+def fuzz_func(name, fn, arg_gen):
     print(f"[+] Fuzzing {name} ...")
-    for _ in range(iterations):
-        args = arg_gen()
+    for _ in range(100):
         try:
-            func(*args)
+            args = arg_gen()
+            fn(*args)
         except Exception as e:
             log_error(name, args, e)
-    print(f"[+] Finished {name}")
+    print(f"[+] Done with {name}")
 
 def main():
     reset_log()
-    print("[*] Starting fuzzing run...\n")
-
-    for name, func, gen in TARGETS:
-        fuzz_function(name, func, gen)
-
-    print("\n[*] Done. Check fuzz_errors.txt for results.")
+    print("[*] Starting fuzzing...\n")
+    for name, fn, gen in TARGETS:
+        fuzz_func(name, fn, gen)
+    print("\n[*] Fuzzing finished. Check fuzz_errors.txt.")
 
 if __name__ == "__main__":
     main()
