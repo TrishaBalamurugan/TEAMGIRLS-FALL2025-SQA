@@ -1,11 +1,6 @@
 """
-Simplified Fuzzer for MLForensics
-Uses ONLY modules that import cleanly:
-- empirical.frequency
-- empirical.report
-- mining.mining
-- mining.git.repo.miner
-- mining.log.op.miner
+Simplified Fuzzer for MLForensics (NO CONSTANTS DEPENDENCIES)
+We fuzz ONLY modules that import cleanly.
 """
 
 import os
@@ -18,7 +13,7 @@ import importlib.util
 BASE = os.path.dirname(os.path.abspath(__file__))
 
 def load_module(name, path):
-    """Load a module from a file path."""
+    """Load a Python module directly from a file path."""
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -26,17 +21,16 @@ def load_module(name, path):
 
 
 # ------------------------------------------------------
-# Load ONLY “safe” modules that do not depend on FAME-ML
+# Load safe modules ONLY (no constants, no AST)
 # ------------------------------------------------------
 frequency = load_module("frequency", os.path.join(BASE, "empirical", "frequency.py"))
 report = load_module("report", os.path.join(BASE, "empirical", "report.py"))
 mining_mod = load_module("mining_mod", os.path.join(BASE, "mining", "mining.py"))
 gitminer = load_module("gitminer", os.path.join(BASE, "mining", "git.repo.miner.py"))
-logminer = load_module("logminer", os.path.join(BASE, "mining", "log.op.miner.py"))
 
 
 # ------------------------------------------------------
-# Helper Functions
+# Helper functions
 # ------------------------------------------------------
 ERROR_FILE = "fuzz_errors.txt"
 
@@ -45,7 +39,6 @@ def rand_str(n=20):
     return "".join(random.choice(chars) for _ in range(n))
 
 def rand_path():
-    """Return random file paths."""
     return rand_str(8) + ".txt"
 
 def rand_url():
@@ -71,28 +64,43 @@ def gen_frequency():
     return (rand_path(),)
 
 def gen_report():
-    data = {rand_str(4): random.randint(1,100) for _ in range(3)}
-    return (data, rand_str(8) + ".csv")
+    d = {rand_str(4): random.randint(1, 100) for _ in range(3)}
+    return (d, rand_str(8) + ".csv")
 
 def gen_clone():
     return (rand_url(), rand_str(6))
 
 def gen_gitminer():
+    # we will fuzz the first function we find in gitminer
     return (rand_path(),)
 
-def gen_logminer():
-    return (rand_path(),)
+def gen_mining_extra():
+    # mining.py may have other useful functions; we fuzz cloneRepo twice
+    return (rand_url(), rand_str(6))
 
 
 # ------------------------------------------------------
-# FUZZ TARGETS
+# Pick a function from git.repo.miner.py
+# ------------------------------------------------------
+gitminer_fn = None
+for name, value in gitminer.__dict__.items():
+    if callable(value):
+        gitminer_fn = value
+        break
+
+if gitminer_fn is None:
+    raise RuntimeError("No callable found in git.repo.miner.py")
+
+
+# ------------------------------------------------------
+# Build fuzz targets
 # ------------------------------------------------------
 TARGETS = [
     ("frequency.getFrequencies", frequency.getFrequencies, gen_frequency),
     ("report.generateCSV", report.generateCSV, gen_report),
     ("mining.cloneRepo", mining_mod.cloneRepo, gen_clone),
-    ("gitminer.<function>", gitminer.__dict__.get(list(gitminer.__dict__.keys())[0]), gen_gitminer),
-    ("logminer.<function>", logminer.__dict__.get(list(logminer.__dict__.keys())[0]), gen_logminer),
+    ("gitminer.<function>", gitminer_fn, gen_gitminer),
+    ("mining.cloneRepo (extra)", mining_mod.cloneRepo, gen_mining_extra),
 ]
 
 
@@ -118,6 +126,7 @@ def main():
         fuzz(name, fn, gen)
 
     print("\n[*] Fuzzing finished. Check fuzz_errors.txt")
+
 
 if __name__ == "__main__":
     main()
