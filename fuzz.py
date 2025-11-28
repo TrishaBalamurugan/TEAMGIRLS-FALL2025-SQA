@@ -1,7 +1,6 @@
 """
-MLForensics Fuzzer (FINAL IMPORT FIX)
-Ensures py_parser is loaded FIRST and registered as 'py_parser'
-so FAME-ML/lint_engine.py can import it.
+MLForensics Fuzzer (FINAL – CONSTANTS FIX)
+Handles nested folders, dynamic imports, and missing constants module.
 """
 
 import os
@@ -15,32 +14,47 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 
 
 def load_module(name, path):
-    """Load a module from a file path AND register it so internal imports work."""
+    """Load a module from a file path AND register it for internal imports."""
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
-    sys.modules[name] = module        # <-- CRITICAL
+    sys.modules[name] = module       # critical
     spec.loader.exec_module(module)
     return module
 
 
 # ------------------------------------------------------
-# LOAD py_parser FIRST (lint_engine depends on it)
+# FIX 1: Load a working 'constants.py' FIRST and register as "constants"
+# Your repository has these:
+#   empirical/constants.py
+#   mining/constants.py
+# No constants in FAME-ML, but py_parser needs one.
 # ------------------------------------------------------
-py_parser = load_module("py_parser", os.path.join(BASE, "FAME-ML", "py_parser.py"))
+constants = load_module(
+    "constants",
+    os.path.join(BASE, "mining", "constants.py")   # choose mining/constants.py
+)
+
 
 # ------------------------------------------------------
-# Load remaining modules
+# FIX 2: Load py_parser FIRST so lint_engine can import it
+# ------------------------------------------------------
+py_parser = load_module(
+    "py_parser",
+    os.path.join(BASE, "FAME-ML", "py_parser.py")
+)
+
+
+# ------------------------------------------------------
+# Load other modules
 # ------------------------------------------------------
 frequency = load_module("frequency", os.path.join(BASE, "empirical", "frequency.py"))
 report = load_module("report", os.path.join(BASE, "empirical", "report.py"))
-
 lint_engine = load_module("lint_engine", os.path.join(BASE, "FAME-ML", "lint_engine.py"))
-
-mining = load_module("mining", os.path.join(BASE, "mining", "mining.py"))
+mining_module = load_module("mining", os.path.join(BASE, "mining", "mining.py"))
 
 
 # ------------------------------------------------------
-# Helper Functions
+# Helper functions
 # ------------------------------------------------------
 ERROR_FILE = "fuzz_errors.txt"
 
@@ -48,20 +62,17 @@ def rand_str(n=20):
     chars = string.ascii_letters + string.digits + string.punctuation
     return "".join(random.choice(chars) for _ in range(n))
 
-
 def rand_path():
-    """Sometimes return real files, sometimes random garbage."""
+    """Sometimes return a real file path, sometimes garbage."""
     possible = []
     for folder in ["empirical", "FAME-ML", "mining"]:
         d = os.path.join(BASE, folder)
         for f in os.listdir(d):
             if f.endswith(".py"):
                 possible.append(os.path.join(d, f))
-
     if random.random() < 0.5:
         return random.choice(possible)
     return rand_str(10) + ".txt"
-
 
 def log_error(name, args, exc):
     with open(ERROR_FILE, "a") as f:
@@ -71,7 +82,6 @@ def log_error(name, args, exc):
         f.write(f"ERROR   : {type(exc).__name__}: {exc}\n")
         f.write("TRACEBACK:\n")
         f.write("".join(traceback.format_exception(type(exc), exc, exc.__traceback__)))
-
 
 def reset_log():
     with open(ERROR_FILE, "w") as f:
@@ -97,7 +107,7 @@ def gen_args_parse():
     return (rand_path(),)
 
 def gen_args_clone():
-    return ("http://" + rand_str(10) + ".git", rand_str(8))
+    return ("http://" + rand_str(12) + ".git", rand_str(10))
 
 
 # ------------------------------------------------------
@@ -108,12 +118,12 @@ TARGETS = [
     ("report.generateCSV", report.generateCSV, gen_args_report),
     ("lint_engine.getDataLoadCount", lint_engine.getDataLoadCount, gen_args_lint),
     ("py_parser.getPythonParseObject", py_parser.getPythonParseObject, gen_args_parse),
-    ("mining.cloneRepo", mining.cloneRepo, gen_args_clone),
+    ("mining.cloneRepo", mining_module.cloneRepo, gen_args_clone),
 ]
 
 
 # ------------------------------------------------------
-# Fuzz Loop
+# Fuzzer Core
 # ------------------------------------------------------
 def fuzz_func(name, fn, arg_gen):
     print(f"[+] Fuzzing {name} ...")
@@ -125,14 +135,11 @@ def fuzz_func(name, fn, arg_gen):
             log_error(name, args, e)
     print(f"[+] Done {name}")
 
-
 def main():
     reset_log()
     print("[*] Starting fuzzing...\n")
-
     for name, fn, gen in TARGETS:
         fuzz_func(name, fn, gen)
-
     print("\n[*] Fuzzing finished — see fuzz_errors.txt.")
 
 
