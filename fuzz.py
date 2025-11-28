@@ -1,5 +1,5 @@
 """
-Simplified Fuzzer for MLForensics (NO CONSTANTS DEPENDENCIES)
+Simplified Fuzzer for MLForensics (NO CONSTANTS, NO logminer, NO FAME-ML)
 We fuzz ONLY modules that import cleanly.
 """
 
@@ -21,7 +21,7 @@ def load_module(name, path):
 
 
 # ------------------------------------------------------
-# Load safe modules ONLY (no constants, no AST)
+# Load safe modules ONLY (no constants, no FAME-ML)
 # ------------------------------------------------------
 frequency = load_module("frequency", os.path.join(BASE, "empirical", "frequency.py"))
 report = load_module("report", os.path.join(BASE, "empirical", "report.py"))
@@ -71,16 +71,14 @@ def gen_clone():
     return (rand_url(), rand_str(6))
 
 def gen_gitminer():
-    # we will fuzz the first function we find in gitminer
     return (rand_path(),)
 
 def gen_mining_extra():
-    # mining.py may have other useful functions; we fuzz cloneRepo twice
     return (rand_url(), rand_str(6))
 
 
 # ------------------------------------------------------
-# Pick a function from git.repo.miner.py
+# Choose callable from gitminer safely
 # ------------------------------------------------------
 gitminer_fn = None
 for name, value in gitminer.__dict__.items():
