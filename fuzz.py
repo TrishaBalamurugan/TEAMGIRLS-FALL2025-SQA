@@ -1,19 +1,22 @@
 """
-Simplified Fuzzer for MLForensics (NO CONSTANTS, NO logminer, NO FAME-ML)
-We fuzz ONLY modules that import cleanly.
+Final Fuzzer for TEAMGIRLS-FALL2025-SQA
+This version loads modules ONLY from the /forensics folder
+to match the GitHub repository structure.
 """
 
 import os
-import sys
 import random
 import traceback
 import string
 import importlib.util
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+FORENSICS = os.path.join(BASE, "forensics")
 
-def load_module(name, path):
-    """Load a Python module directly from a file path."""
+
+def load_module(name, filename):
+    """Load module from forensics/ directory."""
+    path = os.path.join(FORENSICS, filename)
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -21,20 +24,21 @@ def load_module(name, path):
 
 
 # ------------------------------------------------------
-# Load safe modules ONLY (no constants, no FAME-ML)
+# Import modules from /forensics
 # ------------------------------------------------------
-frequency = load_module("frequency", os.path.join(BASE, "empirical", "frequency.py"))
-report = load_module("report", os.path.join(BASE, "empirical", "report.py"))
-mining_mod = load_module("mining_mod", os.path.join(BASE, "mining", "mining.py"))
-gitminer = load_module("gitminer", os.path.join(BASE, "mining", "git.repo.miner.py"))
+frequency = load_module("frequency", "frequency.py")
+lint_engine = load_module("lint_engine", "lint_engine.py")
+mining_mod = load_module("mining_mod", "mining.py")
+gitminer = load_module("gitminer", "git.repo.miner.py")
+py_parser = load_module("py_parser", "py_parser.py")
 
 
 # ------------------------------------------------------
-# Helper functions
+# Helpers
 # ------------------------------------------------------
 ERROR_FILE = "fuzz_errors.txt"
 
-def rand_str(n=20):
+def rand_str(n=12):
     chars = string.ascii_letters + string.digits + string.punctuation
     return "".join(random.choice(chars) for _ in range(n))
 
@@ -46,64 +50,60 @@ def rand_url():
 
 def log_error(name, args, exc):
     with open(ERROR_FILE, "a") as f:
-        f.write("\n-----------------------------\n")
-        f.write(f"FUNCTION: {name}\nARGS    : {args}\n")
-        f.write(f"ERROR   : {type(exc).__name__}: {exc}\n")
+        f.write("\n---------------------------------\n")
+        f.write(f"FUNCTION: {name}\n")
+        f.write(f"ARGS: {args}\n")
+        f.write(f"ERROR: {type(exc).__name__}: {exc}\n")
         f.write("TRACEBACK:\n")
         f.write("".join(traceback.format_exception(type(exc), exc, exc.__traceback__)))
 
+
 def reset_log():
     with open(ERROR_FILE, "w") as f:
-        f.write("Fuzzing Errors Log\n===================\n\n")
+        f.write("Fuzz Testing Errors\n====================\n")
 
 
 # ------------------------------------------------------
 # Argument Generators
 # ------------------------------------------------------
-def gen_frequency():
+def gen_freq():
     return (rand_path(),)
 
-def gen_report():
-    d = {rand_str(4): random.randint(1, 100) for _ in range(3)}
-    return (d, rand_str(8) + ".csv")
+def gen_lint():
+    return (rand_path(),)
+
+def gen_parse():
+    return (rand_path(),)
 
 def gen_clone():
     return (rand_url(), rand_str(6))
 
-def gen_gitminer():
+def gen_git():
     return (rand_path(),)
 
-def gen_mining_extra():
-    return (rand_url(), rand_str(6))
 
-
-# ------------------------------------------------------
-# Choose callable from gitminer safely
-# ------------------------------------------------------
-gitminer_fn = None
-for name, value in gitminer.__dict__.items():
-    if callable(value):
-        gitminer_fn = value
+# Pick any callable inside git.repo.miner.py
+git_fn = None
+for n, v in gitminer.__dict__.items():
+    if callable(v):
+        git_fn = v
         break
 
-if gitminer_fn is None:
-    raise RuntimeError("No callable found in git.repo.miner.py")
-
 
 # ------------------------------------------------------
-# Build fuzz targets
+# Targets
 # ------------------------------------------------------
 TARGETS = [
-    ("frequency.getFrequencies", frequency.getFrequencies, gen_frequency),
-    ("report.generateCSV", report.generateCSV, gen_report),
+    ("frequency.getFrequencies", frequency.getFrequencies, gen_freq),
+    ("lint_engine.getDataLoadCount", lint_engine.getDataLoadCount, gen_lint),
+    ("py_parser.getPythonParseObject", py_parser.getPythonParseObject, gen_parse),
     ("mining.cloneRepo", mining_mod.cloneRepo, gen_clone),
-    ("gitminer.<function>", gitminer_fn, gen_gitminer),
-    ("mining.cloneRepo (extra)", mining_mod.cloneRepo, gen_mining_extra),
+    ("gitminer.<function>", git_fn, gen_git),
 ]
 
 
 # ------------------------------------------------------
-# Fuzz Loop
+# Fuzzing Loop
 # ------------------------------------------------------
 def fuzz(name, fn, gen):
     print(f"[+] Fuzzing {name} ...")
@@ -119,11 +119,9 @@ def fuzz(name, fn, gen):
 def main():
     reset_log()
     print("[*] Starting fuzzing...\n")
-
     for name, fn, gen in TARGETS:
         fuzz(name, fn, gen)
-
-    print("\n[*] Fuzzing finished. Check fuzz_errors.txt")
+    print("\n[*] Fuzzing complete. See fuzz_errors.txt.")
 
 
 if __name__ == "__main__":
