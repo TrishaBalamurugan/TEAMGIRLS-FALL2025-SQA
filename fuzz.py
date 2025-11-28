@@ -1,10 +1,11 @@
 """
-MLForensics Fuzzer (FINAL – CONSTANTS FIX)
-Handles nested folders, dynamic imports, and missing constants module.
+MLForensics Fuzzer (FINAL — Forced constants FIX)
+This version injects a dummy constants module BEFORE py_parser loads.
 """
 
 import os
 import sys
+import types
 import random
 import traceback
 import string
@@ -13,40 +14,30 @@ import importlib.util
 BASE = os.path.dirname(os.path.abspath(__file__))
 
 
+# ------------------------------------------------------
+# 1. FORCE-INJECT A DUMMY CONSTANTS MODULE
+# ------------------------------------------------------
+dummy_constants = types.ModuleType("constants")
+sys.modules["constants"] = dummy_constants
+# (If any code does "import constants", it now succeeds safely)
+
+
+# ------------------------------------------------------
+# 2. Loader helper (unchanged)
+# ------------------------------------------------------
 def load_module(name, path):
-    """Load a module from a file path AND register it for internal imports."""
+    """Load a module and register it in sys.modules."""
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
-    sys.modules[name] = module       # critical
+    sys.modules[name] = module
     spec.loader.exec_module(module)
     return module
 
 
 # ------------------------------------------------------
-# FIX 1: Load a working 'constants.py' FIRST and register as "constants"
-# Your repository has these:
-#   empirical/constants.py
-#   mining/constants.py
-# No constants in FAME-ML, but py_parser needs one.
+# 3. Load modules NOW THAT constants is guaranteed to exist
 # ------------------------------------------------------
-constants = load_module(
-    "constants",
-    os.path.join(BASE, "mining", "constants.py")   # choose mining/constants.py
-)
-
-
-# ------------------------------------------------------
-# FIX 2: Load py_parser FIRST so lint_engine can import it
-# ------------------------------------------------------
-py_parser = load_module(
-    "py_parser",
-    os.path.join(BASE, "FAME-ML", "py_parser.py")
-)
-
-
-# ------------------------------------------------------
-# Load other modules
-# ------------------------------------------------------
+py_parser = load_module("py_parser", os.path.join(BASE, "FAME-ML", "py_parser.py"))
 frequency = load_module("frequency", os.path.join(BASE, "empirical", "frequency.py"))
 report = load_module("report", os.path.join(BASE, "empirical", "report.py"))
 lint_engine = load_module("lint_engine", os.path.join(BASE, "FAME-ML", "lint_engine.py"))
@@ -54,7 +45,7 @@ mining_module = load_module("mining", os.path.join(BASE, "mining", "mining.py"))
 
 
 # ------------------------------------------------------
-# Helper functions
+# 4. Helpers
 # ------------------------------------------------------
 ERROR_FILE = "fuzz_errors.txt"
 
@@ -63,22 +54,23 @@ def rand_str(n=20):
     return "".join(random.choice(chars) for _ in range(n))
 
 def rand_path():
-    """Sometimes return a real file path, sometimes garbage."""
+    """Return real project files 50% of the time."""
     possible = []
     for folder in ["empirical", "FAME-ML", "mining"]:
         d = os.path.join(BASE, folder)
         for f in os.listdir(d):
             if f.endswith(".py"):
                 possible.append(os.path.join(d, f))
+
     if random.random() < 0.5:
         return random.choice(possible)
+
     return rand_str(10) + ".txt"
 
 def log_error(name, args, exc):
     with open(ERROR_FILE, "a") as f:
         f.write("\n-----------------------------\n")
-        f.write(f"FUNCTION: {name}\n")
-        f.write(f"ARGS    : {args}\n")
+        f.write(f"FUNCTION: {name}\nARGS    : {args}\n")
         f.write(f"ERROR   : {type(exc).__name__}: {exc}\n")
         f.write("TRACEBACK:\n")
         f.write("".join(traceback.format_exception(type(exc), exc, exc.__traceback__)))
@@ -89,7 +81,7 @@ def reset_log():
 
 
 # ------------------------------------------------------
-# Argument Generators
+# 5. Argument generators
 # ------------------------------------------------------
 def gen_args_frequency():
     return (rand_path(),)
@@ -111,7 +103,7 @@ def gen_args_clone():
 
 
 # ------------------------------------------------------
-# Fuzz Targets
+# 6. Fuzz targets
 # ------------------------------------------------------
 TARGETS = [
     ("frequency.getFrequencies", frequency.getFrequencies, gen_args_frequency),
@@ -123,7 +115,7 @@ TARGETS = [
 
 
 # ------------------------------------------------------
-# Fuzzer Core
+# 7. Fuzzer core
 # ------------------------------------------------------
 def fuzz_func(name, fn, arg_gen):
     print(f"[+] Fuzzing {name} ...")
