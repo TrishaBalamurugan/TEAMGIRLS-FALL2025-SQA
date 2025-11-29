@@ -1,29 +1,50 @@
-# constants.py
+import subprocess
+import sys
+import os
 
-# Logging related
-LOGGING_KW = "logging"
-NAME_KW = "name"
-NAMES_KW = "names"
+print("*" * 50)
+print("Starting local CI runner")
+print("*" * 50)
+print()
 
-# Empty string (used in parser fallback)
-EMPTY_STRING = ""
+# List of tests to run (relative paths)
+tests = [
+    "forensics/test_logging_frequency.py",
+    "forensics/test_logging_mining.py",
+    "forensics/test_logging_py_parser.py"
+]
 
-# Assignment related
-TARGETS_KW = "targets"
-VALUE_KW = "value"
+def run_test(test_path):
+    print(f"Running {test_path}...\n")
 
-# Function definitions / calls
-FUNC_KW = "func"
-ARGS_KW = "args"
-LINE_NO_KW = "lineno"
+    result = subprocess.run(
+        ["python3", test_path],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )
 
-# Attribute function calls
-PARENT_KW = "parent"
-ATTRIB_KW = "attr"
+    print(result.stdout)
 
-# Model feature extraction
-CLASS_KW = "class"
-FEATURE_KW = "feature"
+    if result.returncode != 0:
+        print(result.stderr)
+        print(f"❌ {test_path} failed!")
+        return False
+    
+    print(f"✅ {test_path} passed!\n")
+    return True
 
-# Any additional constants referenced in py_parser
 
+all_passed = True
+
+for test in tests:
+    ok = run_test(test)
+    if not ok:
+        all_passed = False
+
+print("*" * 50)
+if all_passed:
+    print("All tests passed successfully!")
+else:
+    print("Some tests failed! Check logs.")
+print("*" * 50)
