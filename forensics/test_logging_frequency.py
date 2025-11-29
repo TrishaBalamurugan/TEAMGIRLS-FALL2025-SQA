@@ -1,7 +1,11 @@
 import os
 import logging
 import pandas as pd
-from empirical import frequency
+import sys
+#import os
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+import frequency
+
 
 # -----------------------------
 # Setup dedicated logger

@@ -1,7 +1,7 @@
 import logging
 import ast
 import os
-from . import constants
+import constants
 
 # Configure logging
 logging.basicConfig(

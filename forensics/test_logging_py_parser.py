@@ -1,8 +1,17 @@
-from FAME_ML import py_parser
+import sys
+import os
 import ast
 
+# Add current folder (forensics) to sys.path so imports work
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+
+import py_parser  # now imports correctly
+
+# Correct path to py_parser.py
+py_file_path = os.path.join(os.path.dirname(__file__), 'py_parser.py')
+
 # Parse the Python file
-tree = py_parser.getPythonParseObject('FAME_ML/py_parser.py')
+tree = py_parser.getPythonParseObject(py_file_path)
 
 # ---------------------------------------
 # Check logging for a sample variable

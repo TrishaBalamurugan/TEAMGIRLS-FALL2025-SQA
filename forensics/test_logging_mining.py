@@ -11,8 +11,10 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-from mining import mining
+import sys
 import os
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+import mining
 from datetime import datetime, timedelta
 
 print("=== Testing giveTimeStamp ===")
