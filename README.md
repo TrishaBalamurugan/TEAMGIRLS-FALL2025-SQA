@@ -36,7 +36,7 @@ This project integrates **Software Quality Assurance (SQA)** activities into the
 
 ### 1. Fuzz Testing
 - Automated fuzzing of 5 selected Python methods.  
-- Reports any bugs found during execution (`fuzz_log.txt`).  
+- Reports any bugs found during execution (`fuzz_errors.txt`).  
 
 ### 2. Forensics Logging
 - Integrated logging in 5 Python methods.  
