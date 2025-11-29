@@ -11,32 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout repo
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      # Step 1: Checkout repo
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-    # Step 2: Setup Python
-    - name: Setup Python 3.11
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.11"
+      # Step 2: Setup Python
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
 
-    # Step 3: Install dependencies
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pandas
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pandas
 
-    # Step 4: Run local CI runner
-    - name: Run local CI
-      run: python3 ci_runner.py
+      # Step 4: Run local CI
+      - name: Run local CI
+        run: python3 ci_runner.py
 
-    # Step 5: Upload logs as artifacts
-    - name: Upload logs
-      uses: actions/upload-artifact@v3
-      with:
-        name: forensics-logs
-        path: |
-          forensics/forensics.log
-          forensics/forensics_frequency.log
-          forensics/forensics_mining.log
+      # Step 5: Upload all log files in forensics directory as artifacts
+      - name: Upload logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: forensics-logs
+          path: forensics/*.log
