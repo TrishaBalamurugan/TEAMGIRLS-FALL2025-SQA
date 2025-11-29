@@ -47,7 +47,7 @@ This project integrates **Software Quality Assurance (SQA)** activities into the
 
 ### 2. Forensics Logging
 - Integrated logging in 5 Python methods.  
-- Captures method entry/exit, exceptions, and key variables (`forensics/forensics.log`).  
+- Captures method entry/exit, exceptions, and key variables such as (`forensics/forensics.log`) or others.  
 
 ### 3. Continuous Integration (CI)
 - GitHub Actions workflow triggers on `push` or `pull_request`.  
@@ -67,5 +67,5 @@ This project integrates **Software Quality Assurance (SQA)** activities into the
 2. Run fuzz testing:
    python3 fuzz.py
 3. Check forensics logging output:
-   cat forensics/forensics.log
+   cat such forensics/forensics.log or others
 4. CI workflow runs automatically on GitHub for any push or pull request.
