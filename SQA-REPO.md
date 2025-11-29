@@ -35,12 +35,69 @@ We integrated logging statements across multiple Python files in the `forensics/
 Integrating logging across all key methods provides **traceability**, **debugging support**, and a lightweight form of **forensic auditing**. Logs help identify unexpected behavior, validate outputs, and serve as a record of execution flow for analysis.
 
 ## 2. Fuzzing Results
-### Files and Methods Instrumented
-*TODO: List methods fuzzed and observed behavior/bugs*
 
-### Lesson Learned
-*TODO: Add insights on fuzz testing results and lessons learned*
+We developed a standalone fuzzing engine (fuzz.py) to automatically test five methods across the project. The goal was to identify robustness issues, unhandled exceptions, and assumptions made by the program when receiving malformed or unexpected input.
 
+2.1 Methods Fuzzed
+
+1. frequency.giveTimeStamp()
+- Safe utility function
+- Fuzzed by repeatedly calling with zero arguments
+- Always stable
+
+2. lint_engine.getDataLoadCount(py_file)
+- Sensitive to invalid paths
+- Fuzzed using random, nonexistent filenames
+
+3. py_parser.getPythonParseObject(py_file)
+- Parses Python files
+- Fuzzed with random filenames to test parsing behavior
+
+4. mining.dumpContentIntoFile(text, file)
+- Writes content to files
+- Fuzzed with random text and output paths
+
+5. git.repo.miner.makeChunks(list, size)
+- Pure function
+- Fuzzed with randomly generated lists and chunk sizes
+
+2.2 Observed Behavior
+
+All fuzzing results were logged to fuzz_errors.txt.
+The fuzzer ran fully without crashing and successfully recorded all exceptions.
+
+Finding #1 — FileNotFoundError (Expected)
+Both getDataLoadCount and getPythonParseObject attempt to read files directly using:
+
+    open(pyFile).read()
+
+Because fuzzing passed random filenames, these files did not exist.
+This consistently produced FileNotFoundError.
+This is not a program bug; it confirms the functions assume valid file paths.
+
+Finding #2 — makeChunks() is highly stable
+makeChunks handled random list sizes, contents, and chunk sizes without errors.
+
+Finding #3 — dumpContentIntoFile() behaved normally
+Writing random content to random filenames resulted in expected outcomes—successful writes when possible and IO errors otherwise.
+
+Finding #4 — giveTimeStamp() is fully robust
+This function never threw an exception.
+
+2.3 Summary of Findings
+- No unexpected crashes occurred.
+- All logged errors were predictable and related to nonexistent input files.
+- Parsing functions are sensitive to invalid file paths.
+- Pure functions handled malformed data gracefully.
+
+2.4 Lessons Learned From Fuzz Testing
+- Fuzzing exposes assumptions about input validity.
+- Many functions lack defensive programming (e.g., file existence checks).
+- Utility functions are robust.
+- IO-based components behave predictably under fuzzing.
+- Logging every error provides insight into system behavior.
+
+  
 ## 3. GitHub Actions Continuous Integration 
 ### Files and Methods Instrumented
 *TODO: List tests and CI runner behavior*
